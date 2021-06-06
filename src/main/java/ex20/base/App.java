@@ -43,6 +43,52 @@ public class App {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("");
+        System.out.println("What is the order amount?");
+        double amount = in.nextDouble();
+
+        System.out.println("What state do you live in?");
+        String state = in.next();
+
+        double taxWi = 0.05;
+        double taxEau = 0.005;
+        double taxDunn = 0.004;
+        double taxIl = 0.08;
+        double tax;
+        double total;
+
+        if (state.equals("Wisconsin")) {
+
+            System.out.println("What county do you live in?");
+            String county = in.next();
+
+            if (county.equals("Eau Claire")) {
+                tax = (taxWi + taxEau ) * amount;
+                total = tax + amount;
+            }
+
+            else if (county.equals("Dunn")) {
+                tax = (taxWi + taxDunn ) * amount;
+                total = tax + amount;
+            }
+
+            else{
+                tax = taxWi * amount;
+                total = tax + amount;
+            }
+
+            System.out.printf("The tax is $%.2f.\nThe total is $%.2f.", tax, total);
+        }
+
+        else if (state.equals("Illinois")) {
+            tax = taxIl * amount;
+            total = tax + amount;
+
+            System.out.printf("The tax is $%.2f.\nThe total is $%.2f.", tax, total);
+        }
+
+        else {
+            total = amount;
+            System.out.printf("The total is $%.2f.", total);
+        }
     }
 }
